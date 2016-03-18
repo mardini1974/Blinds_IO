@@ -1,26 +1,29 @@
 local module = {}
 
-local pin = 1
-local pin2 = 2
-gpio.mode(pin, gpio.INPUT)
-gpio.mode(pin2,gpio.INPUT)
-local opin1 = 0
-local opin2 = 4
 
-gpio.mode(opin2,gpio.OUTPUT)
-gpio.mode(opin1,gpio.OUTPUT)
-gpio.write(opin1,gpio.LOW)
-gpio.write(opin2,gpio.LOW)
 
-button_pressed = false
-button_press_started = 0
-button2_pressed = false
-button2_press_started = 0
-
+    local pin = 1
+    local pin2 = 2
+    gpio.mode(pin, gpio.INPUT)
+    gpio.mode(pin2,gpio.INPUT)
+    local opin1 = 0
+    local  opin2 = 4
+    
+    gpio.mode(opin2,gpio.OUTPUT)
+    gpio.mode(opin1,gpio.OUTPUT)
+    gpio.write(opin1,gpio.LOW)
+    gpio.write(opin2,gpio.LOW)
+  
+    button_pressed = false
+    button_press_started = 0
+    button2_pressed = false
+    button2_press_started = 0
+module.delay =10000
+module.debounce =60000
 function module.longrun1()
     if (gpio.read(opin2)==gpio.LOW)then
     gpio.write(opin1,gpio.HIGH)
-       tmr.alarm(0,10000,0,function()
+       tmr.alarm(0,module.delay,0,function()
             gpio.write(opin1,gpio.LOW)
              
        end)
@@ -30,7 +33,7 @@ end
 function module.longrun2()
     if (gpio.read(opin1)==gpio.LOW) then
     gpio.write(opin2,gpio.HIGH)
-       tmr.alarm(2,10000,0,function()
+       tmr.alarm(2,module.delay,0,function()
             gpio.write(opin2,gpio.LOW)
             
        end)
