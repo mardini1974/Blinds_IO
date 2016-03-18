@@ -1,0 +1,18 @@
+How to use IO2.lua
+call file from any Lua snippet like this
+        IO=require "IO2"
+functions for external use
+        .longrun1()
+        .longrun2()
+        .stoplongrun()
+        .startio()
+    example of calling a function
+          "IO.startio()"
+Explaination:
+    .lognrun1() and .longrun2()
+    are ment to rise or lower the sun blinds for a delay
+    .stoplongrun()
+    stops all active long run commands
+    .startio()
+    smaple time of 50ms check input buttons gpio's and set if the press is a short or long press debpending on timer value
+    input gpio's supplied with debounce function 
